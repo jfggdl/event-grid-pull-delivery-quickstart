@@ -23,9 +23,9 @@ import java.util.List;
  *</p>
  */
 public class NamespaceTopicConsumer {
-    private static final String TOPIC_NAME = "jfgTpc1";
-    public static final String EVENT_SUBSCRIPTION_NAME = "evtsub1";
-    public static final String ENDPOINT = "https://jfgegns1.westus2-1.eventgrid.azure.net";
+    private static final String TOPIC_NAME = "<yourNamespaceTopicName>";
+    public static final String EVENT_SUBSCRIPTION_NAME = "<yourEventSusbcriptionName>";
+    public static final String ENDPOINT =  "<yourFullHttpsUrlToTheNamespaceEndpoint>";
     public static final int MAX_NUMBER_OF_EVENTS_TO_RECEIVE = 10;
     public static final Duration MAX_WAIT_TIME_FOR_EVENTS = Duration.ofSeconds(10);
 
@@ -38,7 +38,7 @@ public class NamespaceTopicConsumer {
      * For security concerns, you should not have keys or any other secret in any part of the application code.
      * You should use services like Azure Key Vault for managing your keys.
      */
-    public static final AzureKeyCredential CREDENTIAL = new AzureKeyCredential("mlIlp3DnJ/0ZDlkPXmhL7WuKIVdrqZ4UkYNp+FJ4mWE=");
+    public static final AzureKeyCredential CREDENTIAL = new AzureKeyCredential("<namespace key>");
     public static void main(String[] args) {
         //TODO Update Event Grid version number to your desired version. You can find more information on data plane APIs here:
         //https://learn.microsoft.com/en-us/rest/api/eventgrid/.
@@ -66,23 +66,23 @@ public class NamespaceTopicConsumer {
         // Acknowledge (i.e. delete from Event Grid the) events
         acknowledge(receivedCloudEventLockTokens);
 
-//        // Next: alternative operations to *acknowledge*.
-//
-//        // For simplicity, all lock tokens are passed. In production environments,
-//        // you would only pass specific lock tokens that need to be renewed or the
-//        // lock tokens associated to events that you need to be released or rejected.
-//
-//        // Release (back to Event Grid) events that your app is not ready to process.
-//        release(receivedCloudEventLockTokens);
-//
-//        // Reject events that cannot be processed by your app (message malformed or applicaiton problem).
-//        // Rejected events are dead-lettered, if any configured. Otherwise, events are dropped.
-//        reject(receivedCloudEventLockTokens);
-//
-//        // Renew lock tokens so that your client app has more time to process the event.
-//        // The lock token is extended using the number of seconds set in the
-//        // event subscription's receiveLockDurationInSeconds property.
-//        renewLockToken(receivedCloudEventLockTokens);
+        // Next: alternative operations to *acknowledge*.
+
+        // For simplicity, all lock tokens are passed. In production environments,
+        // you would only pass specific lock tokens that need to be renewed or the
+        // lock tokens associated to events that you need to be released or rejected.
+
+        // Release (back to Event Grid) events that your app is not ready to process.
+        release(receivedCloudEventLockTokens);
+
+        // Reject events that cannot be processed by your app (message malformed or applicaiton problem).
+        // Rejected events are dead-lettered, if any configured. Otherwise, events are dropped.
+        reject(receivedCloudEventLockTokens);
+
+        // Renew lock tokens so that your client app has more time to process the event.
+        // The lock token is extended using the number of seconds set in the
+        // event subscription's receiveLockDurationInSeconds property.
+        renewLockToken(receivedCloudEventLockTokens);
     }
 
     private static void acknowledge(List<String> lockTokens) {

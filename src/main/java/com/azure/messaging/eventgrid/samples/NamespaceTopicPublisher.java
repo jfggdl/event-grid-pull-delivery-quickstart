@@ -28,8 +28,8 @@ import java.util.Random;
  *</p>
  */
 public class NamespaceTopicPublisher {
-    private static final String TOPIC_NAME = "jfgTpc1";
-    public static final String ENDPOINT = "https://jfgegns1.westus2-1.eventgrid.azure.net";
+    private static final String TOPIC_NAME = "<yourNamespaceTopicName>";
+    public static final String ENDPOINT =  "<yourFullHttpsUrlToTheNamespaceEndpoint>";
     public static final int NUMBER_OF_EVENTS_TO_BUILD_THAT_DOES_NOT_EXCEED_100 = 10;
 
     //TODO  Do NOT include keys in source code. This code's objective is to give you a succinct sample about using Event Grid, not to provide an authoritative example for handling secrets in applications.
@@ -37,7 +37,7 @@ public class NamespaceTopicPublisher {
     *  For security concerns, you should not have keys or any other secret in any part of the application code.
      *  You should use services like Azure Key Vault for managing your keys.
      */
-    public static final AzureKeyCredential CREDENTIAL = new AzureKeyCredential("mlIlp3DnJ/0ZDlkPXmhL7WuKIVdrqZ4UkYNp+FJ4mWE=");
+    public static final AzureKeyCredential CREDENTIAL = new AzureKeyCredential("<namespace key>");
 
     public static void main(String[] args) {
         //TODO Update Event Grid version number to your desired version. You can find more information on data plane APIs here:
