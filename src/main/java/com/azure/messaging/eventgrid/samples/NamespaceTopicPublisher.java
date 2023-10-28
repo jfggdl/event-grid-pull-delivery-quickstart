@@ -54,7 +54,7 @@ public class NamespaceTopicPublisher {
     }
 
     /**
-     * <p>Builds a list of valid CloudEvents for testing purposes</p>
+     * <p>Builds a sample list of valid CloudEvents for testing purposes</p>
      * @param numberOfEventsToBuild this should not exceed 100, which is the maximum number of events allowed in a single HTTP request or 1MB in size, whichever is met first.
      * @return the list of CloudEvents
      */
@@ -68,7 +68,7 @@ public class NamespaceTopicPublisher {
     }
 
     /**
-     * <p>Builds a list of valid CloudEvent for testing purposes.</p>
+     * <p>Builds a valid CloudEvent for testing purposes.</p>
      * @return a CloudEvent
      */
     private static CloudEvent buildCloudEvent() {
